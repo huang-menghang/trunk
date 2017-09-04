@@ -12,6 +12,9 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring-servlet.xml</param-value>
 	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 	<servlet>
 		<servlet-name>spring-mvc</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -23,11 +26,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>spring-mvc</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>spring-mvc</servlet-name>
-		<url-pattern>*.jspa</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 	<!--  
 	<context-param>
@@ -51,16 +50,33 @@
 		</init-param>
 		<init-param>
 			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
+			<param-value>true</param-value> 
 		</init-param>
 	</filter>
 	<filter-mapping>
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+	
+	<filter>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>hiddenHttpMethodFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <!--这段代码如果不用上面的的话是可以实现put的-->
+    <!--<filter>
+        <filter-name>HttpMethodPutFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HttpMethodPutFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>-->
+
 	<!--  
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
