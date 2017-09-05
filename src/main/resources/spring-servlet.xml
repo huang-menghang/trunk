@@ -28,7 +28,9 @@
 	<!-- 自动扫描的包名,自动加载所有注解的被spring容器管理的类 -->
 	<context:component-scan base-package="com." />
 	<context:annotation-config />
-
+    <mvc:annotation-driven conversion-service="conversionService"/>
+    <mvc:resources location="/static/**" mapping="/static" cache-period="31536000"/>
+	<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/>
 	<!-- 针对 Responsebody 转码 -->
 	<!--  
 	<mvc:annotation-driven>
@@ -47,6 +49,26 @@
 			value="org.springframework.web.servlet.view.JstlView" />
 	</bean>
     -->
+    
+    
+    <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+	<bean id="mappingJacksonHttpMessageConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+    
+    <bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="mappingJacksonHttpMessageConverter" /><!-- json转换器 -->
+			</list>
+		</property>
+	</bean>
 
 	<!-- 加载数据库jdbc配置文件 -->
 	<bean
