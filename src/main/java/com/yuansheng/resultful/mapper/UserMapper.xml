@@ -8,6 +8,16 @@
   t.`sex` as `sex`
   from `t_user` t
 </select>
-
+<insert id="insertUser">
+ insert into `t_user`(name,sex) values(#{name},#{sex})
+</insert>
+<select id="findUserById" resultType="com.yuansheng.resultful.domain.User">
+ select 
+ t.`id` as `id`,
+ t.`name` as `name`,
+ t.`sex` as `sex`
+ from `t_user` t
+ where t.`id`= #{userId}
+</select>
 
 </mapper>

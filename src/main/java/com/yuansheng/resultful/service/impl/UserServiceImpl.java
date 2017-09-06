@@ -19,14 +19,13 @@ private UserDao entityDao;
 
 	@Override
 	public void addUser(String name, Integer sex) {
-		// TODO Auto-generated method stub
+		entityDao.insertUser(name,sex);
 
 	}
 
 	@Override
 	public void deleteUserById(Integer id) {
-		// TODO Auto-generated method stub
-
+     
 	}
 
 	@Override
@@ -34,5 +33,13 @@ private UserDao entityDao;
 		// TODO Auto-generated method stub
 
 	}
+
+	@Override
+	public User findUserById(Integer userId) {
+
+		return entityDao.findUserById(userId);
+	}
+	
+	
 
 }

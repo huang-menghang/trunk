@@ -14,7 +14,7 @@
 <title>用户展现界面</title>
 </head>
 <body>
-<a href="">用户添加</a>
+<a href="<%=path%>/users/create">用户添加</a>
 <table>
 <tr>
 <th>id</th>
@@ -35,11 +35,9 @@
 <script type="text/javascript" src="<%=path%>/static/plugins/jquery/2.1.4/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
 function deleteUser(userId){
-	alert(userId);
 	$.ajax({  
-        type: 'POST',  
+        type: 'delete',  
         url: '<%=path%>'+'/users/'+userId,  
-        data: {_method:'delete'},
         success: function(data){  
             alert(data.message);
         },  
@@ -48,6 +46,10 @@ function deleteUser(userId){
         }  
     });  
 }
+function editUser(userId){
+	window.location.href='<%=path%>'+'/users/'+userId;
+}
+
 </script>
 </body>
 </html>

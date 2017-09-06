@@ -18,4 +18,6 @@ public interface UserService {
 	public void deleteUserById(Integer id);
 	
 	public void updateUserById(User user);
+
+	public User findUserById(Integer userId);
 }

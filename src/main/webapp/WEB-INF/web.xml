@@ -48,21 +48,28 @@
 		<filter-name>characterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
+    <!-- 用于配置满足delete,put请求 -->
 	<filter>
-		<filter-name>hiddenHttpMethodFilter</filter-name>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
 		<filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
 	</filter>
 	<filter-mapping>
-		<filter-name>hiddenHttpMethodFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<filter-name>HiddenHttpMethodFilter</filter-name>
+		<!-- 备注，这边的名称必须和配置'springmvc'的servlet名称一样 -->
+		<servlet-name>spring-mvc</servlet-name>
 	</filter-mapping>
 
 	<!--这段代码如果不用上面的的话是可以实现put的 -->
-	<!--<filter> <filter-name>HttpMethodPutFilter</filter-name> <filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class> 
-		</filter> <filter-mapping> <filter-name>HttpMethodPutFilter</filter-name> 
-		<url-pattern>/*</url-pattern> </filter-mapping> -->
-
+	<!--  
+	<filter>
+		<filter-name>HttpMethodPutFilter</filter-name>
+		<filter-class>org.springframework.web.filter.HttpPutFormContentFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>HttpMethodPutFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+    -->
 	<!-- <welcome-file-list> <welcome-file>index.jsp</welcome-file> </welcome-file-list> 
 		<error-page> <error-code>404</error-code> <location>/WEB-INF/common/404.jsp</location> 
 		</error-page> -->

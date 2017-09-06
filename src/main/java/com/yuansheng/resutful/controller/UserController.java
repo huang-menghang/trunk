@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yuansheng.resultful.core.common.JsonResult;
+import com.yuansheng.resultful.domain.User;
 import com.yuansheng.resultful.service.UserService;
 
 @Controller
@@ -26,27 +27,40 @@ public class UserController {
 	}
 
 	// 添加用户
+	@RequestMapping(value = "/create", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
+	public ModelAndView createUser() {
+		ModelAndView view = new ModelAndView("user/create");		
+		return view;
+	}
+
+	// 添加用户
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = "text/json;charset=UTF-8")
-	public String addUser() {
+	@ResponseBody
+	public String addUser(String name,Integer sex) {
+		entityService.addUser(name, sex);
 		JsonResult jsonResult = JsonResult.getInstance(0, "添加成功");
 		return jsonResult.toString();
 	}
 
 	// 获取某个用户的信息
 	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = "text/json;charset=UTF-8")
-	@ResponseBody
-	public String editUser(@PathVariable("userId") String userId) {
-		JsonResult jsonResult = JsonResult.getInstance(0, "获取用户成功");
-		return jsonResult.toString();
+	public ModelAndView editUser(@PathVariable("userId") Integer userId) {
+	    User user = entityService.findUserById(userId);
+		ModelAndView view = new ModelAndView("user/edit");
+		view.addObject("user", user);
+		return view;
 	}
 
 	// 修改某个用户的信息
 	@RequestMapping(value = "/{userId}", method = RequestMethod.PUT, produces = "text/json;charset=UTF-8")
-	public String updateUser(@PathVariable("userId") String userId) {
+	@ResponseBody
+	public String updateUser(@PathVariable("userId") String userId,String name,Integer sex) {
+		System.out.println(userId+"  "+name+" "+sex);
 		JsonResult jsonResult = JsonResult.getInstance(0, "修改成功");
 		return jsonResult.toString();
 	}
-    // 删除某个某个用户
+
+	// 删除某个某个用户
 	@RequestMapping(value = "/{userId}", method = RequestMethod.DELETE, produces = "text/json;charset=UTF-8")
 	@ResponseBody
 	public String deleteUser(@PathVariable("userId") String userId) {
