@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Param;
 
 import com.yuansheng.resultful.domain.User;
 
+
+
+
 public interface UserDao {
 	public List<User> listUser();
 

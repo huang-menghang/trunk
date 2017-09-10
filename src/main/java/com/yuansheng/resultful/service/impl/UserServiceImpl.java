@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.yuansheng.resultful.domain.User;
 import com.yuansheng.resultful.mapper.UserDao;
 import com.yuansheng.resultful.service.UserService;
+
 @Service("userService")
 public class UserServiceImpl implements UserService {
 @Autowired
