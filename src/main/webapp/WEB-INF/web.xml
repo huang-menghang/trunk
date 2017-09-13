@@ -58,6 +58,10 @@
 		<!-- 备注，这边的名称必须和配置'springmvc'的servlet名称一样 -->
 		<servlet-name>spring-mvc</servlet-name>
 	</filter-mapping>
+    <welcome-file-list>
+		<welcome-file></welcome-file>
+	</welcome-file-list>
+
 
 	<!--这段代码如果不用上面的的话是可以实现put的 -->
 	<!--  
