@@ -20,7 +20,7 @@ public class UserController {
 
 	// 列出所有的用户
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = "text/html;charset=UTF-8")
-	public ModelAndView editUser() {
+	public ModelAndView index() {
 		System.out.println("1");
 		ModelAndView view = new ModelAndView("user/index");
 		view.addObject("users", entityService.listUser());
