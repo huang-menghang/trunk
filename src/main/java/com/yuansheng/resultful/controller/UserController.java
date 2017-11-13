@@ -69,5 +69,13 @@ public class UserController {
 		JsonResult jsonResult = JsonResult.getInstance(0, "删除用户");
 		return jsonResult.toString();
 	}
+	
+	@RequestMapping(value="/talk",method=RequestMethod.GET,produces = "text/html;charset=UTF-8")
+	public String talk(){
+		
+		return "user/talk";
+	}
+	
+	
 
 }
